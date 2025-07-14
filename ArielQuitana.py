@@ -14,11 +14,6 @@ user_choice: 0
 
 # Variables/
 
-
-
-
-
-
 print("******Menu principal******")
 print("1. Stock disponible")
 print("2. Busqueda por precio")
@@ -36,10 +31,20 @@ while True:
             print("Texto detectado") 
         else: 
             break
-        
-    if user_choice == 4:
+    
+    if user_choice == 1:
+        print("Working on it")
+
+    elif user_choice == 2 :
+        print("workin on it")
+
+    elif user_choice == 3:
+        print("workin on it")
+    elif user_choice == 4:
         print("Goobie")
         break
+    else:
+        print("Porfavor introducir una opcion real! (1-4)")
 
 
 
