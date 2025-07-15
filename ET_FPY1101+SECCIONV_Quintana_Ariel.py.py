@@ -51,18 +51,12 @@ def busqueda_precio(p_min, p_max):
     else:
         print("No hay notebooks en ese rango de precios.")
 
-def actualizar_precio():
-    while True:
-        try:
-            user_asking_price  = int(input())
-        except ValueError:
-             print("Texto detectado") 
-        else: 
-                break
-    if user_asking_price in Products:
-        print("cool")
+def actualizar_precio(modelo, p):
+    if modelo in Stock:
+        Stock[modelo][1] = p  
+        print("Precio de", modelo, "Actualizado")
     else:
-        print("aint here")
+        print("Modelo no encontrado.")
 
 
 print("******Menu principal******")
@@ -79,7 +73,7 @@ while True:
         try:
             user_choice  = int(input())
         except ValueError:
-            print("Texto detectado") 
+            print("Debe de ") 
         else: 
             break
     
@@ -100,12 +94,26 @@ while True:
         busqueda_precio(p_min, p_max)
 
     elif user_choice == 3:
-        print("workin on it")
-
-
+        while True:
+            modelo = input("Ingrese el modelo que desea actualizar: ").strip()
+            try:
+                nuevo_precio = int(input("Ingrese el nuevo precio: "))
+            except ValueError:
+                print("Debe ingresar un valor entero para el precio.")
+                continue
+            
+            resultado = actualizar_precio(modelo, nuevo_precio)
+            if resultado:
+                print("Precio actualizado!!")
+            else:
+                print("El modelo no existe!!")
+            
+            continuar = input("¿Desea actualizar otro precio? (si/no): ").strip().lower()
+            if continuar == "no":
+                break       
 
     elif user_choice == 4:
-        print("Goobie")
+        print("Adios")
         break
     else:
         print("Porfavor introducir una opcion real! (1-4)")
