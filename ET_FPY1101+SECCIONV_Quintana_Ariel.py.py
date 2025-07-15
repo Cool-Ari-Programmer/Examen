@@ -5,13 +5,16 @@ Products = {
     "Modelname": ['brand next to it display measurements:', 1.2, "RAM", "DDisk Type","Capacity", "PRocessor","Graphics card"],
     "G0081": ['HP', 1.2, "2GBs", "SSD","500GFs","Intern 900","GTX 106"],
     "G0082": ['HP', 1.2, "2GBs", "SSD","500GFs","Intern 900","GTX 106"],
-    
+    "G0083": ['DELL', 1.2, "2GBs", "SSD","500GFs","Intern 900","GTX 106"],
+    "G0084": ['DELL', 1.2, "2GBs", "SSD","500GFs","Intern 900","GTX 106"],
     }
 
 Stock= {
     "Modelname": ["brand", "Cost", "Stock"],
     "G0081": ["HP", 50000, 5],
-    "G0082": ["HP", 60000, 2]
+    "G0082": ["HP", 60000, 2],
+    "G0083": ["DELL", 40000, 1],
+    "G0084": ["DELL", 45000, 2],
 }
 
 user_choice: 0
@@ -23,7 +26,7 @@ marca: "blank"
 # Variables/
    
 def stock_marca(marca):
-    marca = marca.lower()  # Convertir la marca a minúsculas para comparación
+    marca = marca.lower()  
     found = False
     for model, details in Stock.items():
         if model != "Modelname" and details[0].lower() == marca:
@@ -32,6 +35,34 @@ def stock_marca(marca):
     if not found:
         print("No se encontró stock para la marca ingresada.")
 
+
+
+def busqueda_precio(p_min, p_max):
+    resultados = []
+    for model, details in Stock.items():
+        if model != "Modelname" and details[2] > 0 and p_min <= details[1] <= p_max:
+            resultados.append(f"{details[0]}-{model}")
+    
+    if resultados:
+        resultados.sort()
+        print("Modelos encontrados dentro del rango de precios:")
+        for resultado in resultados:
+            print(resultado)
+    else:
+        print("No hay notebooks en ese rango de precios.")
+
+def actualizar_precio():
+    while True:
+        try:
+            user_asking_price  = int(input())
+        except ValueError:
+             print("Texto detectado") 
+        else: 
+                break
+    if user_asking_price in Products:
+        print("cool")
+    else:
+        print("aint here")
 
 
 print("******Menu principal******")
@@ -58,29 +89,20 @@ while True:
 
 
     elif user_choice == 2 :
-        print("workin on it")
         while True:
             try:
-                    user_asking_price  = int(input())
+                p_min = int(input("Ingrese el precio mínimo: "))
+                p_max = int(input("Ingrese el precio máximo: "))
             except ValueError:
-             print("Texto detectado") 
-            else: 
+                print("Texto detectado, por favor ingrese números válidos.")
+            else:
                 break
-        if user_asking_price in Products:
-            print("cool")
-        else:
-            print("aint here")
+        busqueda_precio(p_min, p_max)
 
     elif user_choice == 3:
         print("workin on it")
-        
 
 
-            
-        if user_asking_brand in Products:
-            print("ijole")
-        else:
-            print("No existe")
 
     elif user_choice == 4:
         print("Goobie")
